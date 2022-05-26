@@ -1,0 +1,35 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: gb
+    variant: dvorak
+  identity:
+    hostname: htxd
+    password: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0"
+    username: user
+  network:
+    network:
+      version: 2
+      ethernets:
+        eno1: {}
+        eno2:
+         addresses:
+         - 95.213.232.93/29
+         gateway4: 95.213.232.89
+         nameservers:
+           addresses:
+           - 8.8.8.8
+           - 1.1.1.1
+  storage:
+    layout:
+      name: lvm
+  ssh:
+    install-server: yes
+    authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAgEAjx1KlwTRBF7BYSzPgTUas92Zs+bknwrMQ/DibDRGH7Vgn0M5wceZYqRb3m/8yTOEl4cVU0uDd15Y8eFKOg2HrJD2JjL8PNveEnn9m0pHPFAUHcfL4+rnSaTv5mUUTSpRAjJU6Uz/k9cV1GJ1Xe4tpMLxStp6BF4nOhESeL7OmveCVHwi2JLjRZS5BjrDrIUOc6EEbjb6P/w70j+gB1fXJjNCaN+6hUl90eu1i+1I8RjRu0xHJ9dGMDSQ2NYwGmnRglfD0wtilxviWKjgnym1tR6WgRgCxuV/La49jQHhJRZv8+zJKKHKcDqqLrltsUp0uVtVl4cIO7hoFsl+YpcTOvZw2p9kfa/7nSIb6W6XAIL7iuaGPZeVGsdtt9Z/GuJbrMoVdI8jtleczykjlGqBCF6pAe9enKM3WmnXRc6zEpksW2qPOwKkWMgJJKH//sh+ABNzbUGl5WnPY8/12Auwlrta36h8bZhRKaA8tjlozyJcS9SRUOuqO8HxuXKhnZF7SXA/DDM0dP2Y7ubExEtnS6H9xvsiwtEu7DkiAU4dw2PcLK5J1o41c7PanH+J5CnapjGswE4lJMPQMTtFpgLFbdyWeJRkst9ibf/KdtpVUh3QrEW/HNnrzacP9H0BP1yVoMwMf/yOyHBVX1BqliR0mLeQMHMMgyX6gMhO1UApbJs= huntex@github/66648341
+      - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgL39DvZR+0lizaDRLo8l0hGgR4r7DHrA8usSoVmirKTI4iKLRR4fVXY6yiNB5zG09Edr/Xg/i9DyZz62UG44Gox77jlkRxvLyGZky1BXZ97x33exLQtva2fUIRVnFJacFnHQ0WpmZur7JY9rMgqNlBxCt3q1SHarS4Sb779pl52jx/Q0xG/DnZb0OO2qeByPinj/EAin4LA/gAla14lx1TC6OJG3dSzdcPua2Us9R8UgCTnpe8w/GgIDk/MN0JLuIGx2sBcuZTsq3Yi4u5FMuGb4o9DCtlGHk/IvbR6sDVHmQAeIvzYNCtAymU/VaMHw2AyPxOWu2T6lJWdATcT+Uw== huntex@github/34982936
+    allow-pw: yes
+  user-data:
+    disable_root: false
