@@ -23,8 +23,64 @@ autoinstall:
            - 8.8.8.8
            - 1.1.1.1
   storage:
-    layout:
-      name: lvm
+    swap:
+      size: 0
+	grub:
+      install_devices:
+      - partition-0
+    config:
+    - type: disk
+      id: disk0
+	  ptable: gpt
+	  wipe: superblock
+	  grub_device: true
+	  path: /dev/sda
+	  match:
+	    ssd: yes
+	- type: partition
+	  id: partition-0
+	  device: disk0
+	  size: 1G
+	  flag: boot
+	- type: partition
+	  id: partition-1
+	  device: disk0
+	  size: 2G
+	- type: partition
+	  id: partition-2
+	  device: disk0
+	  size: -1
+	- type: format
+	  id: format-0
+	  fstype: fat32
+	  volume: partition-0
+      label: ESP
+	- type: format
+	  id: format-1
+	  fstype: ext4
+	  volume: partition-1
+	- type: format
+	  id: format-2
+	  fstype: ext4
+	  volume: partition-2
+	- type: mount
+	  id: mount-0
+	  device: format-0
+	  path: /boot/efi
+	- type: mount
+	  id: mount-1
+	  device: format-1
+	  path: /boot
+	- type: mount
+	  id: mount-2
+	  device: format-2
+	  path: /
+	- type: disk
+	  id: disk1
+	  path: /dev/sdb
+	  wipe: superblock
+	  match:
+	    ssd: no
   ssh:
     install-server: yes
     authorized-keys:
